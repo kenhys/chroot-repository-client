@@ -12,6 +12,10 @@ module Chroot
         desc "install", "Check installed packages under chroot"
         def install
         end
+
+        desc "build", "Check built packages under chroot"
+        def build
+        end
       end
     end
   end

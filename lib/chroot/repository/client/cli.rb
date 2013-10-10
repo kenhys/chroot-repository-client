@@ -11,8 +11,14 @@ module Chroot
         def list
         end
 
-        desc "check SUBCOMMAND", "Check tasks."
+        desc "check SUBCOMMAND", "Check tasks"
         subcommand "check", Check
+
+        desc "install SUBCOMMAND", "Install tasks"
+        subcommand "install", Install
+
+        desc "uninstall SUBCOMMAND", "Uninstall tasks"
+        subcommand "uninstall", Uninstall
       end
     end
   end

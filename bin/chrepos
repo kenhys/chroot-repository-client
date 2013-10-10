@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require 'chroot/repository/client'
+
+Chroot::Repository::Client::CLI.start

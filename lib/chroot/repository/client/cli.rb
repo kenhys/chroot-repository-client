@@ -11,6 +11,9 @@ module Chroot
         def list
         end
 
+        desc "config SUBCOMMAND", "Configuration tasks"
+        subcommand "config", Config
+
         desc "check SUBCOMMAND", "Check tasks"
         subcommand "check", Check
 

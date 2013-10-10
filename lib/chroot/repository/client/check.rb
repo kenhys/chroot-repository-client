@@ -22,13 +22,21 @@ module Chroot
         end
 
         desc "build", "Check built packages under chroot"
+        option :codes
+        option :dists
+        option :arch
         def build
           package_dir = File.expand_path(File.dirname(__FILE__) + "/../package")
           packages = Dir.glob("#{package_dir}/*.rb").collect do |rb|
             File.basename(rb, '.rb')
           end
           packages.each do |package|
-            send "check_build_#{package}" if `pwd`.split('/').include?(package)
+            args = {
+              :codes => options[:codes],
+              :dists => options[:dists],
+              :arch => options[:arch]
+            }
+            send "check_build_#{package}", options if `pwd`.split('/').include?(package)
           end
         end
       end

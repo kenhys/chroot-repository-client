@@ -1,6 +1,4 @@
 require 'thor'
-require 'chroot/repository/client'
-require 'chroot/repository/client/check'
 
 module Chroot
   module Repository

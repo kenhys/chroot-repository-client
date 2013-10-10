@@ -8,6 +8,10 @@ module Chroot
         desc "address", "Check upstream address of chroot"
         def address
         end
+
+        desc "install", "Check installed packages under chroot"
+        def install
+        end
       end
     end
   end

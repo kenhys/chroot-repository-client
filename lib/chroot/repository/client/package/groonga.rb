@@ -12,12 +12,12 @@ module Chroot
             all_arch = ["i386", "amd64"]
 
             codes = options[:codes].split if options[:codes]
-            codes = all_codes if options[:codes] == "all"
-            codes = all_codes unless options[:codes]
+            codes = CODES if options[:codes] == "all"
+            codes = CODES unless options[:codes]
 
             archs = options[:arch].split if options[:arch]
-            archs = all_arch if options[:arch] == "all"
-            archs = all_arch unless options[:arch]
+            archs = CODES_ARCH if options[:arch] == "all"
+            archs = CODES_ARCH unless options[:arch]
 
             codes.each do |code|
               archs.each do |arch|

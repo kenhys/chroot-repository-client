@@ -9,7 +9,10 @@ module Chroot
         include Chroot::Repository::Client::Helper
 
         require "chroot/repository/client/package/groonga"
+        require "chroot/repository/client/package/mroonga"
+
         include Chroot::Repository::Client::Package::Groonga
+        include Chroot::Repository::Client::Package::Mroonga
 
         desc "address", "Check upstream address of chroot"
         def address

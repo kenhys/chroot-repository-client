@@ -8,8 +8,8 @@ module Chroot
 
         include Chroot::Repository::Client::Helper
 
-        require "chroot/repository/package/groonga"
-        include Chroot::Repository::Package::Groonga
+        require "chroot/repository/client/package/groonga"
+        include Chroot::Repository::Client::Package::Groonga
 
         desc "address", "Check upstream address of chroot"
         def address
@@ -26,7 +26,7 @@ module Chroot
         option :dists
         option :arch
         def build
-          package_dir = File.expand_path(File.dirname(__FILE__) + "/../package")
+          package_dir = File.expand_path(File.dirname(__FILE__) + "/package")
           packages = Dir.glob("#{package_dir}/*.rb").collect do |rb|
             File.basename(rb, '.rb')
           end

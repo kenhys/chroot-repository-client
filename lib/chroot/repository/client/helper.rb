@@ -18,6 +18,14 @@ module Chroot
           raw = `LANG=C /sbin/ifconfig #{interface}`
           $1 if raw =~ /inet addr:(.+?)\s+Bcast/
         end
+
+        def get_packages
+          package_dir = File.expand_path(File.dirname(__FILE__) + "/package")
+          packages = Dir.glob("#{package_dir}/*.rb").collect do |rb|
+            File.basename(rb, '.rb')
+          end
+          packages
+        end
       end
     end
   end

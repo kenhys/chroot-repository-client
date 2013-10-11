@@ -1,14 +1,17 @@
 
+require 'thor'
 
 module Chroot
   module Repository
     module Client
       module Helper
 
-        @@config_path = "~/.chroot-repository-client/config.yaml"
+        def get_config_path
+          File.expand_path(CONFIG_PATH)
+        end
 
         def get_interface_address(interface = nil)
-          yaml_path = File.expand_path(@@config_path)
+          yaml_path = get_config_path
           config = YAML.load_file(yaml_path)
 
           interface = config['interface'] unless interface

@@ -12,6 +12,7 @@ module Chroot
 
             codes = options[:codes].split if options[:codes]
             codes = all_codes if options[:codes] == "all"
+            codes = all_codes unless options[:codes]
 
             archs = options[:arch].split if options[:arch]
             archs = all_arch if options[:arch] == "all"

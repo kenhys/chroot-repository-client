@@ -26,6 +26,7 @@ module Chroot
             File.open(CONFIG_FILE, "w+") do |file|
               file.puts(YAML.dump(template))
             end
+            puts YAML.dump(template)
           end
         end
 

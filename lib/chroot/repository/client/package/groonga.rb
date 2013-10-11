@@ -6,8 +6,6 @@ module Chroot
       module Package
         module Groonga
 
-          @@config_path = "~/.chroot-repository-client/config.yaml"
-
           def check_build_groonga(options)
             all_codes = ["squeeze", "wheezy", "jessie", "unstable"]
             all_arch = ["i386", "amd64"]

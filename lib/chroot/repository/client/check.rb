@@ -21,7 +21,19 @@ module Chroot
         end
 
         desc "install", "Check installed packages under chroot"
+        option :codes
+        option :dists
+        option :arch
         def install
+          packages = get_packages
+          packages.each do |package|
+            args = {
+              :codes => options[:codes],
+              :dists => options[:dists],
+              :arch => options[:arch]
+            }
+            send "check_install_#{package}", options if related_package?(package)
+          end
         end
 
         desc "build", "Check built packages under chroot"

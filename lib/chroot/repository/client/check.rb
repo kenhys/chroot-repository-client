@@ -36,7 +36,7 @@ module Chroot
               :dists => options[:dists],
               :arch => options[:arch]
             }
-            send "check_build_#{package}", options if `pwd`.split('/').include?(package)
+            send "check_build_#{package}", options if related_package?(package)
           end
         end
       end

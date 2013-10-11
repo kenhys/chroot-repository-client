@@ -10,6 +10,10 @@ module Chroot
           File.expand_path(CONFIG_PATH)
         end
 
+        def related_package?(package)
+          `pwd`.split('/').include?(package)
+        end
+
         def get_interface_address(interface = nil)
           yaml_path = get_config_path
           config = YAML.load_file(yaml_path)

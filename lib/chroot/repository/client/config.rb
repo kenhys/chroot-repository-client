@@ -20,10 +20,10 @@ module Chroot
               'arch' => ['i386', 'x86_64']
             }
           }
-          config_dir = File.expand_path("~/.chroot-repository-client")
+          config_dir = File.expand_path(CONFIG_DIR)
           Dir.mkdir(config_dir) unless File.exist?(config_dir)
           Dir.chdir(config_dir) do
-            File.open("config.yaml", "w+") do |file|
+            File.open(CONFIG_FILE, "w+") do |file|
               file.puts(YAML.dump(template))
             end
           end

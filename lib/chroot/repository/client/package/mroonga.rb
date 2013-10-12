@@ -1,5 +1,3 @@
-
-
 module Chroot
   module Repository
     module Client

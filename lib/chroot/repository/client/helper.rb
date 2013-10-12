@@ -14,6 +14,12 @@ module Chroot
           `pwd`.split('/').include?(package)
         end
 
+        def get_chroot_dir
+          yaml_path = get_config_path
+          config = YAML.load_file(yaml_path)
+          config['chroot_dir']
+        end
+
         def get_interface_address(interface = nil)
           yaml_path = get_config_path
           config = YAML.load_file(yaml_path)

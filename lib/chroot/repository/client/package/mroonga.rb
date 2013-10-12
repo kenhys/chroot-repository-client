@@ -5,9 +5,7 @@ module Chroot
         module Mroonga
 
           def check_build_mroonga(options)
-            codes = options[:codes].split if options[:codes]
-            codes = CODES if options[:codes] == "all"
-            codes = CODES unless options[:codes]
+            codes = get_option_codes(options)
 
             archs = options[:arch].split if options[:arch]
             archs = CODES_ARCH if options[:arch] == "all"

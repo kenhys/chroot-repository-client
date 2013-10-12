@@ -36,6 +36,14 @@ module Chroot
           end
           packages
         end
+
+        def get_option_codes(options)
+          codes = options[:codes].split if options[:codes]
+          codes = CODES if options[:codes] == "all"
+          codes = CODES unless options[:codes]
+          codes
+        end
+
       end
     end
   end

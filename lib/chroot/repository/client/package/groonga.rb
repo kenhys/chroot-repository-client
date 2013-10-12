@@ -7,10 +7,6 @@ module Chroot
         module Groonga
 
           def check_build_groonga(options)
-            all_codes = ["squeeze", "wheezy", "jessie", "unstable",
-                        "lucid", "precise", "quantal", "raring"]
-            all_arch = ["i386", "amd64"]
-
             codes = get_option_codes(options)
 
             archs = options[:arch].split if options[:arch]

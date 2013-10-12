@@ -25,6 +25,36 @@ module Chroot
               end
             end
           end
+
+          def check_install_mroonga(options)
+            codes = options[:codes].split if options[:codes]
+            codes = CODES if options[:codes] == "all"
+            codes = CODES unless options[:codes]
+
+            archs = options[:arch].split if options[:arch]
+            archs = CODES_ARCH if options[:arch] == "all"
+            archs = CODES_ARCH unless options[:arch]
+
+            codes.each do |code|
+              archs.each do |arch|
+                get_chroot_dir
+
+                root_dir = get_chroot_dir + "/#{code}-#{arch}"
+                script_path = "#{root_dir}/tmp/check-install-mroonga.sh"
+                content = <<-EOS
+#!/bin/sh
+dpkg -l *roonga | grep roonga
+EOS
+                File.open(script_path, "w+", 0755) do |file|
+                  file.puts(content)
+                end
+                host = "#{code}-#{arch}"
+                basename = File.basename(script_path)
+                command = "sudo chname #{host} chroot #{root_dir} /tmp/#{basename}"
+                puts `#{command}`
+              end
+            end
+          end
         end
       end
     end

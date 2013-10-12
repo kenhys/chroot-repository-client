@@ -8,10 +8,7 @@ module Chroot
 
           def check_build_groonga(options)
             codes = get_option_codes(options)
-
-            archs = options[:arch].split if options[:arch]
-            archs = CODES_ARCH if options[:arch] == "all"
-            archs = CODES_ARCH unless options[:arch]
+            archs = get_option_arch(options)
 
             codes.each do |code|
               archs.each do |arch|

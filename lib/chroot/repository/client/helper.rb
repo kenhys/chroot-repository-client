@@ -44,6 +44,12 @@ module Chroot
           codes
         end
 
+        def get_option_arch(options)
+          archs = options[:arch].split if options[:arch]
+          archs = CODES_ARCH if options[:arch] == "all"
+          archs = CODES_ARCH unless options[:arch]
+          archs
+        end
       end
     end
   end

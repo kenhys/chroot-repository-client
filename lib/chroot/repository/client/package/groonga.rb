@@ -11,9 +11,7 @@ module Chroot
                         "lucid", "precise", "quantal", "raring"]
             all_arch = ["i386", "amd64"]
 
-            codes = options[:codes].split if options[:codes]
-            codes = CODES if options[:codes] == "all"
-            codes = CODES unless options[:codes]
+            codes = get_option_codes(options)
 
             archs = options[:arch].split if options[:arch]
             archs = CODES_ARCH if options[:arch] == "all"

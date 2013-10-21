@@ -8,7 +8,7 @@ module Chroot
       CONFIG_PATH = "#{CONFIG_DIR}/#{CONFIG_FILE}"
 
       CODES = ["squeeze", "wheezy", "jessie", "unstable",
-               "lucid", "precise", "quantal", "raring"]
+               "lucid", "precise", "quantal", "raring", "saucy"]
       CODES_ARCH = ["i386", "amd64"]
 
       DISTS = ["centos", "centos", "fedora"]

@@ -15,7 +15,28 @@ module Chroot
                 base_version=`cat ../base_version`
                 sets=`find apt/repositories -name "*#{base_version}*.deb" | grep #{code} | grep #{arch}`
                 if not sets.length.zero?
-                  printf "%8s %5s %s => %d debs\n", code, arch, base_version, sets.split("\n").length
+                  printf "%8s %5s %s => %2d debs\n", code, arch, base_version, sets.split("\n").length
+                else
+                  printf "%8s %5s %s => %2d debs\n", code, arch, base_version, 0
+                end
+              end
+            end
+
+            dists = get_option_dists(options)
+            darch = get_option_darch(options)
+            dists.each do |dist|
+              versions = CENTOS_VERSIONS if dist == "centos"
+              versions = ["19"] if dist == "fedora"
+              versions.each do |version|
+                darch.each do |arch|
+                  base_version=`cat ../base_version`
+                  sets=`find yum/repositories/#{dist}/#{version} -name "*#{base_version}*.rpm" | grep #{arch}`
+                  printf "%10s %7s %s => ", "#{dist}-#{version}", arch, base_version
+                  if not sets.length.zero?
+                    printf "%2d rpms\n", sets.split("\n").length
+                  else
+                    printf "%2d rpms\n", 0
+                  end
                 end
               end
             end

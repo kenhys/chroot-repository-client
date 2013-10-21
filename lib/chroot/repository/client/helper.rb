@@ -50,6 +50,20 @@ module Chroot
           archs = CODES_ARCH unless options[:arch]
           archs
         end
+
+        def get_option_dists(options)
+          dists = options[:dists].split if options[:dists]
+          dists = DISTS if options[:codes] == "all"
+          dists = DISTS unless options[:dists]
+          dists
+        end
+
+        def get_option_darch(options)
+          darch = options[:darch].split if options[:darch]
+          darch = DISTS_ARCH if options[:darch] == "all"
+          darch = DISTS_ARCH unless options[:darch]
+          darch
+        end
       end
     end
   end

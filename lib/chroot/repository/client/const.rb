@@ -11,7 +11,7 @@ module Chroot
                "lucid", "precise", "quantal", "raring", "saucy"]
       CODES_ARCH = ["i386", "amd64"]
 
-      DISTS = ["centos", "centos", "fedora"]
+      DISTS = ["centos", "fedora"]
       DISTS_ARCH = ["i386", "x86_64"]
 
       CENTOS_VERSIONS = ["5", "6"]

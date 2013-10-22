@@ -12,8 +12,11 @@ module Chroot
               archs.each do |arch|
                 base_version=`cat ../version`
                 sets=`find apt/repositories -name "*#{base_version}*.deb" | grep #{code} | grep #{arch}`
+                printf "%8s %5s %s",code, arch, base_version
                 if not sets.length.zero?
-                  printf "%8s %5s %s => %d debs\n", code, arch, base_version, sets.split("\n").length
+                  printf " => %d debs\n", sets.split("\n").length
+                else
+                  printf " => %d debs\n", 0
                 end
               end
             end

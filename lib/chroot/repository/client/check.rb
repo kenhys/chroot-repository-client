@@ -40,13 +40,15 @@ module Chroot
         option :codes
         option :dists
         option :arch
+        option :summary
         def build
           packages = get_packages
           packages.each do |package|
             args = {
               :codes => options[:codes],
               :dists => options[:dists],
-              :arch => options[:arch]
+              :arch => options[:arch],
+              :summary => options[:summary]
             }
             send "check_build_#{package}", options if related_package?(package)
           end

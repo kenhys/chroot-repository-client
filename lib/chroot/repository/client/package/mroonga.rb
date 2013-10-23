@@ -29,12 +29,30 @@ module Chroot
               versions.each do |version|
                 darch.each do |arch|
                   base_version=`cat ../version`
-                  sets=`find yum/repositories/#{dist}/#{version} -name "*#{base_version}*.rpm" | grep #{arch}`
-                  printf "%10s %7s %s => ", "#{dist}-#{version}", arch, base_version
-                  if not sets.length.zero?
-                    printf "%2d rpms\n", sets.split("\n").length
-                  else
-                    printf "%2d rpms\n", 0
+                  target_dir = "yum/repositories/#{dist}/#{version}"
+                  target_name = ""
+                  case dist
+                  when "centos"
+                    ["mysql-mroonga", "mysql55-mroonga"].each do |target|
+                      next if target == "mysql55-mroonga" and version == "6"
+                      sets=`find #{target_dir} -name "#{target}*#{base_version}*.rpm" | grep #{arch}`
+                      printf "%10s %7s %16s %s => ", "#{dist}-#{version}", arch, target, base_version
+                      if not sets.length.zero?
+                        printf "%2d rpms\n", sets.split("\n").length
+                      else
+                        printf "%2d rpms\n", 0
+                      end
+                    end
+                  when "fedora"
+                    ["mariadb-mroonga", "mysql-mroonga"].each do |target|
+                      sets=`find #{target_dir} -name "#{target}*#{base_version}*.rpm" | grep #{arch}`
+                      printf "%10s %7s %16s %s => ", "#{dist}-#{version}", arch, target, base_version
+                      if not sets.length.zero?
+                        printf "%2d rpms\n", sets.split("\n").length
+                      else
+                        printf "%2d rpms\n", 0
+                      end
+                    end
                   end
                 end
               end

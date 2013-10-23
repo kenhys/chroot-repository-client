@@ -1,10 +1,13 @@
 require 'thor'
 require 'yaml'
+require 'colored'
 
 module Chroot
   module Repository
     module Client
       class Config < Thor
+
+        include Chroot::Repository::Client::Helper
 
         desc "setup", "Setup initial configuration"
         def setup
@@ -30,6 +33,14 @@ module Chroot
           end
         end
 
+        desc "show", "Show configuration"
+        def show
+          config = YAML.load_file(get_config_path)
+          puts "chrepos config show:"
+          config.keys.each do |key|
+            printf " %20s: %s\n", key.green, config[key]
+          end
+        end
       end
     end
   end

@@ -10,6 +10,10 @@ module Chroot
           File.expand_path(CONFIG_PATH)
         end
 
+        def get_config_file
+          YAML.load_file(get_config_path)
+        end
+
         def related_package?(package)
           `pwd`.split('/').include?(package)
         end

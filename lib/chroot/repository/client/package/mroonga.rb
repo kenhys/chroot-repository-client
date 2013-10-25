@@ -13,15 +13,18 @@ module Chroot
           end
 
           def check_build_mroonga(options)
+            config = get_config_file
+
             codes = get_option_codes(options)
             archs = get_option_arch(options)
 
+            mroonga_dir = config['mroonga_dir']
             use_html_summary = use_html_summary?(options)
             summary = {}
             codes.each do |code|
               summary[code] ||= {}
               archs.each do |arch|
-                base_version=`cat ../version`
+                base_version=`cat #{mroonga_dir}/version`
                 sets=`find apt/repositories -name "*#{base_version}*.deb" | grep #{code} | grep #{arch}`
                 if not sets.length.zero?
                   summary[code][arch] ||= sets.split("\n").length

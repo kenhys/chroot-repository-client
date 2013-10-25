@@ -68,6 +68,10 @@ module Chroot
           darch = DISTS_ARCH unless options[:darch]
           darch
         end
+
+        def get_package_count(sets)
+          sets.split("\n").length
+        end
       end
     end
   end

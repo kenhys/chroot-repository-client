@@ -25,7 +25,8 @@ module Chroot
               summary[code] ||= {}
               archs.each do |arch|
                 base_version=`cat #{mroonga_dir}/version`
-                sets=`find apt/repositories -name "*#{base_version}*.deb" | grep #{code} | grep #{arch}`
+                repository_dir = "#{mroonga_dir}/packages/apt/repositories"
+                sets = `find #{repository_dir} -name "*#{base_version}*.deb" | grep #{code} | grep #{arch}`
                 if not sets.length.zero?
                   summary[code][arch] ||= sets.split("\n").length
                 else
@@ -48,8 +49,8 @@ module Chroot
               versions = ["19"] if dist == "fedora"
               versions.each do |version|
                 darch.each do |arch|
-                  base_version=`cat ../version`
-                  target_dir = "yum/repositories/#{dist}/#{version}"
+                  base_version = `cat #{mroonga_dir}/version`
+                  target_dir = "#{mroonga_dir}/packages/yum/repositories/#{dist}/#{version}"
                   target_name = ""
                   case dist
                   when "centos"
